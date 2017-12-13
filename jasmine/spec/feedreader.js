@@ -47,11 +47,8 @@ $(function() {
              expect(allFeeds[i].name).toBeDefined();
              expect(allFeeds[i].name.length).not.toBe(0);
            }
-         })
-
-
+         });
     });
-
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', function() {
@@ -71,9 +68,11 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('element changes visibity on click', function () {
-            let menuIcon = $('.menu-icon-link')
+            let menuIcon = $('.menu-icon-link');
+            //on click menu-hidden class is removed from body
             menuIcon.click();
             expect($('body').hasClass('menu-hidden')).toEqual(false);
+            //on click menu-hidden class is added back to body
             menuIcon.click();
             expect($('body').hasClass('menu-hidden')).toEqual(true);
           });
@@ -88,13 +87,14 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         beforeEach(function (done) {
-             loadFeed(0, done);
-         });
 
+         beforeEach(function(done) {
+             loadFeed(1, done);
+         });
+         
          //Check to ensure atleast one entry is in the feed container
          it('feed container has minimum of 1 entry', function () {
-           expect($('.entry'.length)).toBeGreaterThan(0);
+              expect( $('.feed .entry').length ).toBeGreaterThan(0);
          });
     });
 
